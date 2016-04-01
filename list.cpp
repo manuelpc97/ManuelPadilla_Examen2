@@ -3,7 +3,7 @@
 
 
 List::List(){
-
+	head = NULL;
 }
 
 List::List(Person persona){
@@ -16,10 +16,11 @@ List::~List(){
 
 void List::setHead(Person persona){
 	head = new Node(persona);
+	head->setNext(NULL);
 }
 
 Person List::getHead(){
-	return head;
+	return head->getValue();
 }
 
 void List::insert(int posicion, Person persona){
@@ -42,31 +43,74 @@ void List::insert(int posicion, Person persona){
 }
 
 Person List::at(int posicion){
-	
+	int size = this->size();
+	Node* temporal;
+	if(posicion >= size || posicion < 0){
+		throw "Invalid position";
+	}	
+	temporal = head;
+	for(int i = 0; i < size; i++){
+		if(i == posicion){
+			return temporal->getValue();	
+		}
+		temporal = temporal ->getNext();
+	}	
 }
 
 void List::erase(int posicion){
+	int size = this->size();
+	Node* temporal;
+	Node* nonWanted;
+	
+	if(posicion >= size || posicion < 0){
+		throw "Invalid position";
+	}
 
+	temporal = head;
+	if(posicion > 0){
+		for(int i = 0; i < posicion-1; i++){
+			temporal = temporal->getNext();
+		}
+		nonWanted = temporal -> getNext();
+		if(nonWanted->hasNext())
+			temporal->setNext(nonWanted->getNext());
+		else
+			temporal -> setNext(NULL);		
+	}else if(posicion == 0){
+		head = head->getNext();	
+	}
+	
 }
 
 void List::concat(List* lista){
-		
+				
 }
 
 int List::find(Person persona){
+	int size = this -> size();
+	int number = 0;
+	Node* temporal = head;
 
+	for(int i = 0; i < size; i++){
+		if(!strcmp(persona.getName(), (temporal->getValue()).getName())){
+			number =  i;
+		}
+		temporal = temporal->getNext();
+	}
+	return number;	
 }
 
 int List::size(){
 	int contador = 0;
 	Node* temporal;
-	temporal = head->getNext();
+	temporal = head;
 
 	if(!temporal->hasNext()){
-		contador+=1;
+		contador++;
 	}else{
+		contador++;
 		while(temporal->hasNext()){
-			contador += 1;
+			contador++;
 			temporal = temporal->getNext();		
 		}
 	}
@@ -75,17 +119,21 @@ int List::size(){
 
 void List::push_back(Person persona){
 	Node* referencia;
-	if(!head->hasNext()){
-		head.setNext(new(Node(persona));
+	if(!head){
+		this->setHead(persona);
 	}else{
-		referencia = head->getNext();
-		while(referencia->hasNext()){
-			referencia = referencia->getNext(); 		
+		if(!head->hasNext()){
+			this->head->setNext(new Node(persona));
+		}else{
+			referencia = head->getNext();
+			while(referencia->hasNext()){
+				referencia = referencia->getNext(); 		
+			}
+			referencia->setNext(new Node(persona));
 		}
-		referencia->setNext(new Node(persona));
 	}	
 }
 
 Node* List::first(){
-
+	return head;
 }

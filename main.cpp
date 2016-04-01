@@ -192,6 +192,8 @@ int main(int argc, char const *argv[]){
 
 			int position = friendList.find(persona
 				);
+			addch(position +48);
+			getch();
 			if(position != -1){
 				friendList.erase(position);
 			}

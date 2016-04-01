@@ -8,27 +8,27 @@ Node::Node(Person persona):persona(persona){
 
 }
 
-~Node(){
+Node::~Node(){
 
 }
 	
-Person getValue(){
+Person Node::getValue(){
 	return persona;
 }
 
-Node* getNext(){
+Node* Node::getNext(){
 	return next;	
 }
 
-void setValue(Person persona){
+void Node::setValue(Person persona){
 	this ->persona = persona;
 }
 
-void setNext(Node* next){
+void Node::setNext(Node* next){
 	this -> next = next;
 }
 
-bool hasNext(){
+bool Node::hasNext(){
 	if(next){
 		return true;
 	}else{
