@@ -93,8 +93,9 @@ int List::size(){
 	int contador = 0;
 	Node* temporal;
 	temporal = head;
-
-	if(!temporal->hasNext()){
+	if(temporal == NULL){
+		contador = 0;
+	}else if(!temporal->hasNext()){
 		contador++;
 	}else{
 		contador++;
