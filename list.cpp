@@ -83,7 +83,15 @@ void List::erase(int posicion){
 }
 
 void List::concat(List* lista){
-				
+	int size = this->size();
+	Node* temporal;
+	temporal = head;
+
+	for(int i = 0; i < size; i++){
+		temporal = temporal->getNext();
+	}
+	
+	temporal->setNext(lista->first());				
 }
 
 int List::find(Person persona){
