@@ -23,25 +23,6 @@ Person List::getHead(){
 	return head->getValue();
 }
 
-void List::insert(int posicion, Person persona){
-	int size = this->size();
-	Node* temporal;
-	Node* temporal2;
-	if(posicion >= size || posicion < 0){
-		throw "Invalid position";
-	}
-	
-	temporal = head;
-	for(int i = 0; i < size; i++){
-		if(i == posicion ){
-			temporal2 = temporal->getNext();
-			temporal->setNext(new Node(persona));
-			temporal->getNext()->setNext(temporal2);		
-		}
-		temporal = temporal->getNext();	
-	}
-}
-
 Person List::at(int posicion){
 	int size = this->size();
 	Node* temporal;

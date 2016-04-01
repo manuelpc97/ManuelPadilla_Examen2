@@ -12,7 +12,6 @@ public:
 	~List();
 	void setHead(Person persona);
 	Person getHead();
-	void insert(int posicion, Person persona);
 	Person at(int posicion);
 	void erase(int posicion);
 	void concat(List* lista);

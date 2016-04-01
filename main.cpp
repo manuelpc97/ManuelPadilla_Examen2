@@ -109,7 +109,6 @@ int main(int argc, char const *argv[]){
 				}
 			}
 			number[9] = '\0';
-
 			friendList.push_back(Person(nombre,number));
 			echo();
 			clear();
